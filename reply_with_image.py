@@ -51,9 +51,13 @@ def reply_with_image(address):
   if DEBUG:
     print("taking picture...")
 
+  print("starting camera")
   camera.start_preview()
+  print("waiting for exposure")
   sleep(2)
+  print("taking picture")
   camera.capture('/dev/shm/image.jpg')
+  print("closing camera")
   camera.stop_preview()
 
   if DEBUG:
