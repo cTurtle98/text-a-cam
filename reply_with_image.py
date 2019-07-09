@@ -56,7 +56,7 @@ def reply_with_image(address):
   print("waiting for exposure")
   sleep(2)
   print("taking picture")
-  camera.capture('/dev/shm/image.jpg')
+  camera.capture('~/image.jpg')
   camera.close()
   print("closing camera")
   camera.stop_preview()
@@ -64,7 +64,7 @@ def reply_with_image(address):
   if DEBUG:
     print("adding picture to email...")
 
-  with open('/dev/shm/image.jpg', 'rb') as img:
+  with open('~/image.jpg', 'rb') as img:
 
     # know the Content-Type of the image
     maintype, subtype = mimetypes.guess_type(img.name)[0].split('/')
