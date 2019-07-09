@@ -1,5 +1,6 @@
 '''
 text-a-cam project
 
-this is the main orchastration program
+this is the main orchestration program
 '''
+
