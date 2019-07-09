@@ -91,7 +91,7 @@ def reply_with_image(address):
   smtp.ehlo()
   smtp.login('ciaran.david.farley@gmail.com', emailpassword)
 
-  smtp.sendmail(cam@cturtle98.com, address, msg.as_string())
+  smtp.sendmail('cam@cturtle98.com', address, msg.as_string())
   smtp.quit()
 
   if DEBUG:
