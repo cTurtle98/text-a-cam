@@ -9,6 +9,8 @@ this function takes an email address as input
 it will send an html message to that email containing an image from the pi camera
 '''
 
+DEBUG = True
+
 from email.message import EmailMessage
 from email.utils import make_msgid
 import mimetypes
@@ -21,6 +23,12 @@ import smtplib
 camera = PiCamera()
 
 def reply_with_image(address):
+
+  if DEBUG:
+    print("Sending email to " + address)
+
+  if DEBUG:
+    print("creating email...")
 
   msg = EmailMessage()
 
@@ -40,10 +48,16 @@ def reply_with_image(address):
 </html>
 """.format(image_cid=image_cid[1:-1]), subtype='html')
 
+  if DEBUG:
+    print("taking picture...")
+
   camera.start_preview()
   sleep(2)
   camera.capture('/dev/shm/image.jpg')
   camera.stop_preview()
+
+  if DEBUG:
+    print("adding picture to email...")
 
   with open('/dev/shm/image.jpg', 'rb') as img:
 
@@ -56,12 +70,21 @@ def reply_with_image(address):
                                          subtype=subtype, 
                                          cid=image_cid)
 
+  if DEBUG:
+    print("retreiving email password from file...")
+
   f = open("emailpassword.txt")
   emailpassword = f.read()
   f.close()
+
+  if DEBUG:
+    print("sending email...")
 
   smtp = smtplib.SMTP()
   smtp.connect('smtp.gmail.com')
   smtp.login('cam@cturtle98.com', emailpassword)
   smtp.sendmail(cam@cturtle98.com, address, msg.as_string())
   smtp.quit()
+
+  if DEBUG:
+    print("done")
