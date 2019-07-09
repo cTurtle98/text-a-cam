@@ -22,6 +22,8 @@ import smtplib
 
 camera = PiCamera()
 
+IMAGEPATH = "/home/pi/image.jpg"
+
 def reply_with_image(address):
 
   if DEBUG:
@@ -56,7 +58,7 @@ def reply_with_image(address):
   print("waiting for exposure")
   sleep(2)
   print("taking picture")
-  camera.capture('~/image.jpg')
+  camera.capture(IMAGEPATH)
   camera.close()
   print("closing camera")
   camera.stop_preview()
@@ -64,7 +66,7 @@ def reply_with_image(address):
   if DEBUG:
     print("adding picture to email...")
 
-  with open('~/image.jpg', 'rb') as img:
+  with open(IMAGEPATH, 'rb') as img:
 
     # know the Content-Type of the image
     maintype, subtype = mimetypes.guess_type(img.name)[0].split('/')
