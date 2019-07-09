@@ -57,6 +57,7 @@ def reply_with_image(address):
   sleep(2)
   print("taking picture")
   camera.capture('/dev/shm/image.jpg')
+  camera.close()
   print("closing camera")
   camera.stop_preview()
 
