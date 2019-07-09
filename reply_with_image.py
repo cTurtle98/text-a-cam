@@ -59,7 +59,7 @@ def reply_with_image(address):
   sleep(2)
   print("taking picture")
   camera.capture(IMAGEPATH)
-  camera.close()
+  #camera.close()
   print("closing camera")
   camera.stop_preview()
 
