@@ -32,5 +32,11 @@ sudo raspi-config nonint do_serial 1
 echo "~~~~~~~~ installing python ~~~~~~~~"
 sudo apt install python3 python3-pip -y
 
+echo "~~~~~~~~ installing python packages ~~~~~~~~"
+pip install 
+
 echo "~~~~~~~~ thank you for running the setup script ~~~~~~~~"
 echo "~~~~~~~~ your pi should be setup now ~~~~~~~~"
+echo
+echo "rebooting pi in 5 seconds (ctrl +c to cancel)"
+sleep 5 && sudo reboot now
