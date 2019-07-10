@@ -33,7 +33,7 @@ echo "~~~~~~~~ installing python ~~~~~~~~"
 sudo apt install python3 python3-pip -y
 
 echo "~~~~~~~~ installing python packages ~~~~~~~~"
-pip3 install picamera
+pip3 install picamera selenium
 
 echo "~~~~~~~~ thank you for running the setup script ~~~~~~~~"
 echo "~~~~~~~~ your pi should be setup now ~~~~~~~~"
