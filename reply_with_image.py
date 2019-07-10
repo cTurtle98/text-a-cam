@@ -11,14 +11,13 @@ it will send an html message to that email containing an image from the pi camer
 
 DEBUG = True
 
-from email.message import EmailMessage
-from email.utils import make_msgid
-import mimetypes
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.MIMEImage import MIMEImage
 
 from picamera import PiCamera
 from time import sleep
-
-import smtplib
 
 camera = PiCamera()
 
@@ -32,23 +31,22 @@ def reply_with_image(address):
   if DEBUG:
     print("creating email...")
 
-  msg = EmailMessage()
-
+  msg = MIMEMultipart("related")
   msg['Subject'] = ''
   msg['From'] = 'cTurtle98 camera <cam@cTurtle98.com>'
   msg['To'] = address
+  msg.preamble = 'This is a multi-part message in MIME format.'
 
-  #msg.set_content('There should be an image here')
+  msgAlternative = MIMEMultipart('alternative')
+  msg.attach(msgAlternative)
 
-  image_cid = make_msgid(domain='cturtle98.com')
-
-  msg.set_content("""\
+  msgAlternative.attach(MIMEText("""\
 <html>
     <body>
-        <img src="cid:{image_cid}">
+        <img src="cid:the_image">
     </body>
 </html>
-""".format(image_cid=image_cid[1:-1]), subtype='html')
+""", 'html'))
 
   if DEBUG:
     print("taking picture...")
@@ -66,16 +64,9 @@ def reply_with_image(address):
   if DEBUG:
     print("adding picture to email...")
 
-  with open(IMAGEPATH, 'rb') as img:
-
-    # know the Content-Type of the image
-    maintype, subtype = mimetypes.guess_type(img.name)[0].split('/')
-
-    # attach it
-    msg.get_payload()[1].set_content(img.read(), 
-                                         maintype=maintype, 
-                                         subtype=subtype, 
-                                         cid=image_cid)
+  f = open('IMAGEPATH', 'rb')
+  msg.attach(MIMEImage(f.read()).add_header('Content-ID', '<the_image>'))
+  f.close()
 
   if DEBUG:
     print("retreiving email password from file...")
