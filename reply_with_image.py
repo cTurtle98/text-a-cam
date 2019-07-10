@@ -77,11 +77,12 @@ def reply_with_image(address):
 
   if DEBUG:
     print("sending email...")
+    print(msg)
+
 
   smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
   smtp.ehlo()
   smtp.login('ciaran.david.farley@gmail.com', emailpassword)
-
   smtp.sendmail('cam@cturtle98.com', address, msg.as_string())
   smtp.quit()
 
