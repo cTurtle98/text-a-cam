@@ -37,9 +37,7 @@ def reply_with_image(address):
   msg['To'] = address
   msg.preamble = 'text-a-cam reply message'
 
-  msg.attach(MIMEText('<html><body><h1>Hello</h1>' +
-'<p><img src="cid:0"></p>' +
-'</body></html>', 'html', 'utf-8'))
+  msg.attach(MIMEText('<html><body><img src="cid:0"></body></html>', 'html', 'utf-8'))
 
   if DEBUG:
     print("taking picture...")
