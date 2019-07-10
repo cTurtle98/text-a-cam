@@ -14,6 +14,7 @@ DEBUG = True
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
+from email.mime.text import MIMEText
 
 from picamera import PiCamera
 from time import sleep
