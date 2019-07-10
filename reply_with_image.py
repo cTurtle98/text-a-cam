@@ -72,7 +72,7 @@ def reply_with_image(address):
     maintype, subtype = mimetypes.guess_type(img.name)[0].split('/')
 
     # attach it
-    msg.get_payload()[1].add_related(img.read(), 
+    msg.get_payload()[1].set_content(img.read(), 
                                          maintype=maintype, 
                                          subtype=subtype, 
                                          cid=image_cid)
