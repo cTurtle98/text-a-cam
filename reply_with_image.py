@@ -38,11 +38,11 @@ def reply_with_image(address):
   msg['From'] = 'cTurtle98 camera <cam@cTurtle98.com>'
   msg['To'] = address
 
-  msg.set_content('There should be an image here')
+  #msg.set_content('There should be an image here')
 
   image_cid = make_msgid(domain='cturtle98.com')
 
-  msg.add_alternative("""\
+  msg.set_content("""\
 <html>
     <body>
         <img src="cid:{image_cid}">
