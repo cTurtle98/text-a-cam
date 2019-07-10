@@ -53,7 +53,7 @@ def reply_with_image(address):
     print("adding picture to email...")
 
   f = open(IMAGEPATH, 'rb')
-  msg.attach(MIMEImage(f.read())
+  msg.attach(MIMEImage(f.read()))
   f.close()
 
   if DEBUG:
