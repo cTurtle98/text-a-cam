@@ -36,6 +36,10 @@ def reply_with_image(address):
   msg['To'] = address
   msg.preamble = 'text-a-cam reply message'
 
+  msg.attach(MIMEText('<html><body><h1>Hello</h1>' +
+'<p><img src="cid:0"></p>' +
+'</body></html>', 'html', 'utf-8'))
+
   if DEBUG:
     print("taking picture...")
 
@@ -53,7 +57,7 @@ def reply_with_image(address):
     print("adding picture to email...")
 
   f = open(IMAGEPATH, 'rb')
-  msg.attach(MIMEImage(f.read()))
+  msg.attach(MIMEImage(f.read()).add_header('Content-ID', '<0>'))
   f.close()
 
   if DEBUG:
