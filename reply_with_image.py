@@ -65,7 +65,7 @@ def reply_with_image(address):
 
   if DEBUG:
     print("sending email...")
-    print(msg)
+    #print(msg)
 
 
   smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
