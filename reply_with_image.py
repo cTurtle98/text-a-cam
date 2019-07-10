@@ -12,7 +12,6 @@ it will send an html message to that email containing an image from the pi camer
 DEBUG = True
 
 import smtplib, ssl
-from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 
@@ -31,22 +30,11 @@ def reply_with_image(address):
   if DEBUG:
     print("creating email...")
 
-  msg = MIMEMultipart("related")
+  msg = MIMEMultipart()
   msg['Subject'] = ''
   msg['From'] = 'cTurtle98 camera <cam@cTurtle98.com>'
   msg['To'] = address
-  msg.preamble = 'This is a multi-part message in MIME format.'
-
-  msgAlternative = MIMEMultipart('alternative')
-  msg.attach(msgAlternative)
-
-  msgAlternative.attach(MIMEText("""\
-<html>
-    <body>
-        <img src="cid:the_image">
-    </body>
-</html>
-""", 'html'))
+  msg.preamble = 'text-a-cam reply message'
 
   if DEBUG:
     print("taking picture...")
@@ -65,7 +53,7 @@ def reply_with_image(address):
     print("adding picture to email...")
 
   f = open(IMAGEPATH, 'rb')
-  msg.attach(MIMEImage(f.read()).add_header('Content-ID', '<the_image>'))
+  msg.attach(MIMEImage(f.read())
   f.close()
 
   if DEBUG:
