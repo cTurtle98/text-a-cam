@@ -1,6 +1,8 @@
 '''
 text-a-cam project
 
+https://github.com/cTurtle98/text-a-cam
+
 this is the main orchestration program
 '''
 
