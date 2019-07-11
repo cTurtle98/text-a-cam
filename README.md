@@ -1,9 +1,14 @@
 # text-a-cam
-run this program on a pi and you can send it a text and receive an image from the pi camera
 
-I recoment starting with raspbian lite
+## this project is incomplete under developement
 
-after you boot the pi for the first time run these commands
+when completed this will be all the code I need to allow me to drop a pi with a camera somewhere and send it a text message and it will reply with an image from the camera
+
+## Base OS
+
+Raspbian lite
+
+## New Pi setup
 
 ```sudo apt install git```
 
