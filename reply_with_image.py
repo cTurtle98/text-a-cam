@@ -9,7 +9,7 @@ this function takes an email address as input
 it will send an html message to that email containing an image from the pi camera
 '''
 
-DEBUG = True
+DEBUG = False
 
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
@@ -37,19 +37,23 @@ def reply_with_image(address):
   msg['To'] = address
   msg.preamble = 'text-a-cam reply message'
 
-  #msg.attach(MIMEText('<html><body><img src="cid:0"></body></html>', 'html', 'utf-8'))
-
   if DEBUG:
     print("taking picture...")
 
-  print("starting camera")
+  if DEBUG:
+    print("starting camera")
+
   camera.start_preview()
-  print("waiting for exposure")
+
+  if DEBUG:
+    print("waiting for exposure")
+
   sleep(2)
-  print("taking picture")
+
+  if DEBUG:
+    print("taking picture")
+  
   camera.capture(IMAGEPATH)
-  #camera.close()
-  print("closing camera")
   camera.stop_preview()
 
   if DEBUG:
