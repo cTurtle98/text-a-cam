@@ -22,9 +22,12 @@ def translate('sms_email'):
   translatiion_dict = json.load(f)
   f.close()
 
-  emailparts = sms_email.split('@', 2)
+  emailparts = sms_email.split('@')
 
   print (emailparts)
 
-  #if emailparts[2] in translatiion_dict:
-   # return translatiion_dict[emailparts[2]]
+  if emailparts[1] in translatiion_dict:
+    mms_address = emailparts[0] + "@" + translatiion_dict[emailparts[1]]
+    return mms_address
+  else
+    return sms_email
